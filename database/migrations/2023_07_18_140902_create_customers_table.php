@@ -17,7 +17,7 @@ class CreateCustomersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('since')->nullable();
-            $table->string('revenue');
+            $table->float('revenue');
             $table->timestamps();
             
         });

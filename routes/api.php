@@ -15,25 +15,20 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 Route::group(['middleware' => ['api']],function () {
-    Route::get('tennis', [CustomersController::class, 'index']);
-    Route::post('tennis', [CustomersController::class, 'store']);
-    Route::get('tennis/{id}', [CustomersController::class, 'show']);
-    Route::put('tennis/{id}', [CustomersController::class, 'update']);
-    Route::delete('tennis/{id}', [CustomersController::class, 'destroy']);
+    Route::get('customer', [CustomersController::class, 'index']);
+    Route::post('customer', [CustomersController::class, 'store']);
+    Route::get('customer/{id}', [CustomersController::class, 'show']);
+    Route::get('customers/{id}', [CustomersController::class, 'discount']);
+    Route::put('customer/{id}', [CustomersController::class, 'update']);
+    Route::delete('customer/{id}', [CustomersController::class, 'destroy']);
 }); 
 
 Route::group(['middleware' => ['api']],function () {
-    Route::get('tennis', [ProductsController::class, 'index']);
-    Route::post('tennis', [ProductsController::class, 'store']);
-    Route::get('tennis/{id}', [ProductsController::class, 'show']);
-    Route::put('tennis/{id}', [ProductsController::class, 'update']);
-    Route::delete('tennis/{id}', [ProductsController::class, 'destroy']);
-}); 
-
-Route::group(['middleware' => ['api']],function () {
-    Route::get('tennis', [OrdersController::class, 'index']);
-    Route::post('tennis', [OrdersController::class, 'store']);
-    Route::get('tennis/{id}', [OrdersController::class, 'show']);
-    Route::put('tennis/{id}', [OrdersController::class, 'update']);
-    Route::delete('tennis/{id}', [OrdersController::class, 'destroy']);
-}); 
+    Route::get('product', [ProductsController::class, 'index']);
+    Route::post('product', [ProductsController::class, 'store']);
+    Route::get('product/{id}', [ProductsController::class, 'show']);
+    Route::get('products/{id}', [ProductsController::class, 'switchDiscount']);
+    Route::get('productss/{id}', [ProductsController::class, 'toolDiscount']);
+    Route::put('product/{id}', [ProductsController::class, 'update']);
+    Route::delete('product/{id}', [ProductsController::class, 'destroy']);
+});

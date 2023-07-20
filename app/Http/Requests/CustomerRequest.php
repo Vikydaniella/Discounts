@@ -13,7 +13,9 @@ class CustomerRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name'=> 'required|string|max:30',
+            'since'=>'required|date|max:20',
+            'revenue'=> 'required|float|max:1,000,000'
         ];
     }
 }
