@@ -15,7 +15,9 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->integer('customer_id');
+            $table->foreign('customer_id')
+            ->references('id')->on('customers')
+            ->onDelete('cascade');
             $table->json('items')->nullable();
             $table->float('total');
             $table->timestamps();
