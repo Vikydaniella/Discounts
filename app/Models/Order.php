@@ -15,5 +15,10 @@ class Order extends Model
     protected $casts = [
         'items' => AsArray::class,
     ];
+
+    public function customer_id()
+    {
+        return $this->belongsTo('App\Customer');
+    }
 }
 

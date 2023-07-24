@@ -8,14 +8,14 @@ class OrderRequest extends FormRequest
 {
     public function authorize()
     {
-        return false;
+        return true;
     }
     public function rules()
     {
         return [
-            'name'=> 'required|string|max:30',
-            'since'=>'required|date|max:20',
-            'revenue'=> 'required|float|max:1,000,000'
+            'customer_id'=> 'required|integer|max:30',
+            'items'=>'required|array|max:1000',
+            'total'=> 'required|float|max:1,000,000'
         ];
     }
 }
