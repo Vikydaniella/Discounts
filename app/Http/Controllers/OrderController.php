@@ -1,21 +1,26 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Customer;
+use App\Http\Requests\OrderRequest;
 
 class OrderController extends Controller
 {
-    public function discount($customerId, $items)
+    public function discount(OrderRequest $request)
     {
+        $customerId = $request->input('customer_id');
+        $items = $request->input('items');
+
         $discountedTotal = $this->customerDiscount($customerId);
         $discountedTotal = $this->switchDiscount($items, $discountedTotal);
         $discountedTotal = $this->toolDiscount($items, $discountedTotal);
-        
+
         return $discountedTotal;
     }
-    
+
     protected function customerDiscount($customerId)
     {
         $customer = Customer::find($customerId);
@@ -33,7 +38,7 @@ class OrderController extends Controller
             $customer->save();
             return $discountedTotal;
         }
-        
+
         return $customerTotal;
     }
 
@@ -67,7 +72,7 @@ class OrderController extends Controller
     protected function toolDiscount($items, $totalPrice)
     {
         $categoryTools = Product::where('category', 1)->first();
-        
+
         if ($categoryTools) {
             $productCount = 0;
 

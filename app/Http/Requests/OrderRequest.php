@@ -15,7 +15,7 @@ class OrderRequest extends FormRequest
         return [
             'customer_id'=> 'required|integer|max:30',
             'items'=>'required|array|max:1000',
-            'total'=> 'required|float|max:1,000,000'
+            'total'=> 'required|decimal|max:10000.99'
         ];
     }
 }

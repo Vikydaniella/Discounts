@@ -17,7 +17,7 @@ class CreateCustomersTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('since');
-            $table->float('revenue');
+            $table->decimal('revenue');
             $table->timestamps();
             
         });

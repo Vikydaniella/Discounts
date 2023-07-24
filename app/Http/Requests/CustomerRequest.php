@@ -15,7 +15,7 @@ class CustomerRequest extends FormRequest
         return [
             'name'=> 'required|string|max:30',
             'since'=>'required|date|max:20',
-            'revenue'=> 'required|float|max:1,000,000'
+            'revenue'=> 'required|decimal|max:1,000,000'
         ];
     }
 }
