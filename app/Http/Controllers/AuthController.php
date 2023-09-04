@@ -75,7 +75,6 @@ class AuthController extends Controller
             'message' => 'Successfully logged out',
         ]);
     }
-
     public function refresh()
     {
         return response()->json([
@@ -86,6 +85,11 @@ class AuthController extends Controller
                 'type' => 'bearer',
             ]
         ]);
+    }
+
+    public function discount()
+    {
+        
     }
 
 }

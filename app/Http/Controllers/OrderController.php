@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Customer;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\OrderRequest;
 
 class OrderController extends Controller
@@ -53,13 +54,20 @@ class OrderController extends Controller
         $productCount = 0;
 
         foreach ($items as $item) {
-            $orderItem = Order::find($item['product_id']);
-            if ($orderItem && $orderItem->product_id === $categorySwitches->id) {
+            
+            $orders = DB::table('orders')
+                ->whereJsonContains('items', ['product-id'=> 'B102'])
+                ->get();
+
+            if ($orders && $orders->product-id === $categorySwitches->id) {
                 $productCount += $item['quantity'];
+                dd($productCount, $item['quantity']);
             }
         }
 
         $freeProductCount = floor($productCount / 5);
+
+       dd($item, $freeProductCount, $productCount);
 
         if ($freeProductCount > 0) {
             $freeProductsTotalPrice = $categorySwitches->price * $freeProductCount;
@@ -76,9 +84,12 @@ class OrderController extends Controller
         if ($categoryTools) {
             $productCount = 0;
 
+
             foreach ($items as $item) {
-                $orderItem = Order::find($item['product_id']);
-                if ($orderItem && $orderItem->product_id === $categoryTools->id) {
+                $orderItem = DB::table('orders')
+                ->whereJsonContains('items', ['product-id' => 'B102'])
+                ->get();
+                if ($orderItem && $orderItem->product-id === $categoryTools->id) {
                     $productCount += $item['quantity'];
                 }
             }
