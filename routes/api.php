@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\OrderController;
-use App\Http\Requests\OrderRequest;
 
 Route::controller(AuthController::class)->group(
     function () {
@@ -11,8 +10,8 @@ Route::controller(AuthController::class)->group(
         Route::post('register', 'register');
         Route::post('logout', 'logout');
         Route::post('refresh', 'refresh');
-       // Route::get('discount', 'discount');
     }
 );
 
-Route::get('/discount/{id}',[OrderController::class, 'discount']);
+Route::post('/discount',[OrderController::class, 'discount']);
+
